@@ -1,60 +1,62 @@
- My Spring Boot Application
+## Task Manager Application Deployment Using ECS Infrastructure with Terraform
 
-This is a simple Spring Boot application.
+This repository provides a way to automatically set up and deploy a Spring Boot application using AWS ECS, Docker, ECR, and GitHub Actions. It follows DevOps best practices to ensure the deployment is efficient, scalable, and secure.
 
-**Features:**
+![Final Output](https://github.com/HemanthGangula/taskmaster/blob/feature1/images/final%20output.png)
 
-**Getting Started:**
+## Note
+For detailed documentation regarding this project, please check your email. The documentation has been sent from hemantgangula7@gmail.com.
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/nreddywellness360/taskmaster.git
-Build the project:
+## Key Components
 
-Bash
+### Technology Stack
+- **Cloud Provider:** AWS
+- **Infrastructure-as-Code:** Terraform
+- **Containerization:** Docker, AWS ECR
+- **Orchestration:** AWS ECS (Elastic Container Service)
+- **CI/CD Pipeline:** GitHub Actions
+- **Monitoring and Logging:** AWS CloudWatch Container Insights, Log Groups
 
-mvn clean install
-Run the application:
+### Infrastructure Provisioning
+- **AWS Resources:**
+  - VPC with subnets
+  - Security Groups
+  - ECS Cluster
+  - ECS Task Definitions and Services
+  - Load Balancer
+  - ECR Repository
+- Configured networking rules to allow necessary traffic (SSH, HTTP/HTTPS).
 
-Bash
+### Deployment Workflow
+1. **Containerization:**
+   - Dockerfile for building the Spring Boot application image.
+   - Base image: OpenJDK with application dependencies.
 
-mvn spring-boot:run
-API Documentation:
+2. **CI/CD Pipeline:**
+   - **Build Stage:**
+     - Trigger on code commits to a specific branch.
+     - Build and test Docker image.
+     - Push the image to ECR.
+   - **Deploy Stage:**
+     - Update ECS Task Definition and Service with the latest image.
+     - Perform deployment with a rolling update strategy.
 
-[ ] Link to API documentation (if available)
-Contributing:
+3. **Monitoring and Logging:**
+   - AWS CloudWatch Container Insights for collecting metrics.
+   - CloudWatch Log Groups for application logging.
 
-Fork the repository.
-Create a new branch for your feature.
-Make your changes and commit them.
-Push your changes to your fork. 
-5. Create a pull request.   
-License:
+## Deliverables
+- Terraform code for infrastructure provisioning.
+- Dockerfile for the Spring Boot application.
+- GitHub Actions workflows for CI/CD.
+- ECS Task Definition and Service configurations.
+- Documentation for setup and usage.
 
-This project is licensed under the [License Name] - see the [LICENSE] file for details.
+## Usage
+1. Clone the repository.
+2. Configure AWS credentials.
+3. Deploy infrastructure using Terraform.
+4. Use the GitHub Actions workflows to build, push, and deploy the application.
+5. Access metrics via AWS CloudWatch and logs via CloudWatch Log Groups.
 
-Contact:
 
-Nagesh [nreddy@wellness360.co]
-
-**Explanation:**
-
-* **Header:** A descriptive title for your application.
-* **Features:** A list of the application's key functionalities.
-* **Getting Started:**
-    * **Cloning:** Instructions on how to obtain the project code.
-    * **Building:** Steps to compile the project using Maven.
-    * **Running:** How to execute the application.
-* **API Documentation:** A link to the API documentation if available.
-* **Contributing:** Guidelines for contributors on how to contribute to the project.
-* **License:** Information about the project's license.
-* **Contact:** Your contact information.
-
-**Note:**
-
-* Replace the placeholders (e.g., `<repository_url>`, `[Feature 1]`, `[License Name]`) with the actual values.
-* Update the features, documentation, and other sections as needed for your specific application.
-* Consider adding more sections like "Deployment," "Testing," or "Troubleshooting" if applicable.
-* Customize the readme to match your project's specific needs and style.
-
-This is a basic template, and you can expand it further to include more detailed information and instructions.
